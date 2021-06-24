@@ -16,13 +16,17 @@
 
 package com.android.i18n.addressinput.autocomplete.gmscore;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import android.location.Location;
-import android.test.ActivityInstrumentationTestCase2;
+
+import androidx.test.rule.ActivityTestRule;
+
 import com.android.i18n.addressinput.testing.TestActivity;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -44,7 +48,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 /** Unit tests for {@link AddressAutocompleteApi}. */
-public class AddressAutocompleteApiImplTest extends ActivityInstrumentationTestCase2<TestActivity> {
+public class AddressAutocompleteApiImplTest extends ActivityTestRule<TestActivity> {
   private static final String TAG = "AddrAutoApiTest";
   private static final String TEST_QUERY = "TEST_QUERY";
 
@@ -67,7 +71,7 @@ public class AddressAutocompleteApiImplTest extends ActivityInstrumentationTestC
   }
 
   @Override
-  protected void setUp() {
+  protected void beforeActivityLaunched() {
     addressAutocompleteApi =
         new AddressAutocompleteApiImpl(googleApiClient, geoDataApi, locationApi);
   }

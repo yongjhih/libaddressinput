@@ -1,6 +1,7 @@
 package com.android.i18n.addressinput;
 
-import android.test.ActivityInstrumentationTestCase2;
+import androidx.test.rule.ActivityTestRule;
+
 import com.android.i18n.addressinput.testing.TestActivity;
 
 /**
@@ -8,7 +9,7 @@ import com.android.i18n.addressinput.testing.TestActivity;
  * This empty file is included in the srcs attribute of the android_test rule so that the real test
  * source files can be included via the binary_under_test attribute.
  */
-public class DummyTest extends ActivityInstrumentationTestCase2<TestActivity> {
+public class DummyTest extends ActivityTestRule<TestActivity> {
   public DummyTest() {
     super(TestActivity.class);
   }

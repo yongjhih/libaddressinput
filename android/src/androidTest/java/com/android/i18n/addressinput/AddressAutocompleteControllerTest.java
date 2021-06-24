@@ -16,18 +16,21 @@
 
 package com.android.i18n.addressinput;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import android.content.Context;
 import android.database.DataSetObserver;
-import android.test.ActivityInstrumentationTestCase2;
 import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.rule.ActivityTestRule;
+
 import com.android.i18n.addressinput.AddressAutocompleteController.AddressAdapter;
 import com.android.i18n.addressinput.AddressAutocompleteController.AddressPrediction;
 import com.android.i18n.addressinput.testing.TestActivity;
@@ -49,7 +52,7 @@ import org.mockito.MockitoAnnotations;
 
 /** Unit tests for {@link AddressAutocompleteController}. */
 public class AddressAutocompleteControllerTest
-    extends ActivityInstrumentationTestCase2<TestActivity> {
+    extends ActivityTestRule<TestActivity> {
   private static final String TEST_QUERY = "TEST_QUERY";
 
   private Context context;
@@ -71,7 +74,7 @@ public class AddressAutocompleteControllerTest
   }
 
   @Override
-  protected void setUp() {
+  protected void beforeActivityLaunched() {
     MockitoAnnotations.initMocks(this);
 
     context = getActivity();

@@ -1,11 +1,12 @@
 package com.android.i18n.addressinput;
 
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.ArgumentMatchers.nullable;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.*;
 
-import android.test.ActivityInstrumentationTestCase2;
+
+import androidx.test.rule.ActivityTestRule;
+
 import com.android.i18n.addressinput.testing.TestActivity;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.i18n.addressinput.common.AddressAutocompletePrediction;
@@ -21,7 +22,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 /** Unit tests for {@link PlaceDetailsClient}. */
-public class PlaceDetailsClientTest extends ActivityInstrumentationTestCase2<TestActivity> {
+public class PlaceDetailsClientTest extends ActivityTestRule<TestActivity> {
   @Mock private AsyncRequestApi asyncRequestApi;
   @Mock private AddressAutocompletePrediction autocompletePrediction;
 
@@ -34,7 +35,7 @@ public class PlaceDetailsClientTest extends ActivityInstrumentationTestCase2<Tes
   }
 
   @Override
-  protected void setUp() {
+  protected void beforeActivityLaunched() {
     MockitoAnnotations.initMocks(this);
 
     placeDetailsClient = new PlaceDetailsClient("TEST_API_KEY", asyncRequestApi);

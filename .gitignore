@@ -4,3 +4,6 @@ java/**/build/
 android/build/
 build/
 common/build/
+local.properties
+.*.sw[p-z]
+.idea/

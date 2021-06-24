@@ -16,9 +16,12 @@
 
 package com.android.i18n.addressinput;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.test.ActivityInstrumentationTestCase2;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -26,6 +29,8 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.rule.ActivityTestRule;
+
 import com.android.i18n.addressinput.testing.TestActivity;
 import com.google.i18n.addressinput.common.AddressData;
 import com.google.i18n.addressinput.common.AddressField;
@@ -35,7 +40,7 @@ import com.google.i18n.addressinput.common.SimpleClientCacheManager;
 
 /** Test class for {@link AddressWidgetUiComponentProvider}. */
 public class AddressWidgetUiComponentProviderTest
-    extends ActivityInstrumentationTestCase2<TestActivity> {
+    extends ActivityTestRule<TestActivity> {
   private AddressWidget widget;
   private AddressWidgetUiComponentProvider componentProvider;
   private LinearLayout container;
@@ -49,8 +54,8 @@ public class AddressWidgetUiComponentProviderTest
   }
 
   @Override
-  protected void setUp() throws Exception {
-    super.setUp();
+  protected void beforeActivityLaunched() {
+    super.beforeActivityLaunched();
     AddressData.Builder builder =
         new AddressData.Builder()
             .setCountry("US")
