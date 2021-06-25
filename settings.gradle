@@ -19,3 +19,5 @@
  * and the Android specific classes.
  */
 include 'android', 'common'
+include ':common-ktx'
+include ':android-ktx'
